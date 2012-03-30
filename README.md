@@ -1,8 +1,8 @@
-# Backbone localStorage Adapter v1.0
+# Backbone jstorage Adapter v1.0
 
-[![Build Status](https://secure.travis-ci.org/jeromegn/Backbone.localStorage.png?branch=master)](http://travis-ci.org/jeromegn/Backbone.localStorage)
+I took the original Backbone.localStorage (http://documentup.com/jeromegn/backbone.localStorage) and used (https://github.com/andris9/jStorage) so that it will work with older non HTML5 browsers.
 
-Quite simply a localStorage adapter for Backbone. It's a drop-in replacement for Backbone.Sync() to handle saving to a localStorage database.
+I also plan on setting it up so it dosen't patch Backbone.sync but the specific Model or Collections sync.
 
 ## Usage
 
@@ -10,7 +10,8 @@ Include Backbone.localStorage after having included Backbone.js:
 
 ```html
 <script type="text/javascript" src="backbone.js"></script>
-<script type="text/javascript" src="backbone.localStorage.js"></script>
+<script type="text/javascript" src="jstorage.js"></script>
+<script type="text/javascript" src="backbone.jstorage.js"></script>
 ```
 
 Create your collections like so:
@@ -18,12 +19,12 @@ Create your collections like so:
 ```javascript
 window.SomeCollection = Backbone.Collection.extend({
   
-  localStorage: new Backbone.LocalStorage("SomeCollection"), // Unique name within your app.
+  localStorage: new Backbone.jStorage("SomeCollection"), // Unique name within your app.
   
   // ... everything else is normal.
-  
 });
 ```
+this all from the originl fork from Jerome.
   
 Feel free to use Backbone as you usually would, this is a drop-in replacement.
 
