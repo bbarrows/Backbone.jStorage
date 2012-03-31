@@ -501,6 +501,7 @@
     // you can reset the entire set with a new list of models, without firing
     // any `added` or `removed` events. Fires `reset` when finished.
     reset : function(models, options) {
+        console.log("in Colletcitons Reset");
       models  || (models = []);
       options || (options = {});
       this.each(this._removeReference);

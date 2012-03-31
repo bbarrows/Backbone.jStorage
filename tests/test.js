@@ -7,9 +7,7 @@ QUnit.done = function(results){
 
 $(document).ready(function() {
     var Library = Backbone.Collection.extend({
-        localStorage: new Backbone.LocalStorage("libraryStore")
-        
-        // is the problem with my library that is has no model reference?
+        jStorage: new Backbone.jStorage("libraryStore")
     });
 
     var attrs = {
@@ -20,16 +18,18 @@ $(document).ready(function() {
     
     var library = null;
     
-    module("localStorage on collections", {
-        setup: function() {
-            window.localStorage.clear();
+    module("jStorage on collections", {
+        setup: function() { 
+            $.jStorage.flush();
             library = new Library();
         }
     });
     
     test("should be empty initially", function() {
         equals(library.length, 0, 'empty initially');
+        console.log("Before fetch!!")
         library.fetch();
+        console.log("Library Length: " + library.length);
         equals(library.length, 0, 'empty read');
     });
     
@@ -52,7 +52,9 @@ $(document).ready(function() {
   test("should persist changes", function(){
         library.create(attrs);
         equals(library.first().get('author'), 'Bill Shakespeare', 'author was read');
+        console.log("Before the save!!!!!")
         library.first().save({ author: 'William Shakespeare' });
+        console.log("After the save")
         library.fetch();
         equals(library.first().get('author'), 'William Shakespeare', 'verify author update');
   });
@@ -81,13 +83,6 @@ $(document).ready(function() {
         equals(library.length, 0, 'item was destroyed and library is empty even after fetch');
     });
   
-    test("should not try to load items from localstorage if they are not there anymore", function() {
-        library.create(attrs);
-        localStorage.clear();
-        library.fetch();
-        equals(0, library.length);
-    });
-    
     test("should load from session store without server request", function() {
         library.create(attrs);
         
@@ -102,7 +97,7 @@ $(document).ready(function() {
         });
         var Collection = Backbone.Collection.extend({
             model: Model,
-            localStorage: new Store('strangeID')
+            jStorage: new Store('strangeID')
         });
         
         var collection = new Collection();
@@ -111,9 +106,9 @@ $(document).ready(function() {
     });
 
   
-    module("localStorage on models", {
+    module("jStorage on models", {
     setup: function() {
-            window.localStorage.clear();
+            $.jStorage.flush();
       book = new Book();
     }
     });
@@ -124,7 +119,7 @@ $(document).ready(function() {
             author : 'Bill Shakespeare',
             length : 123
         },
-    localStorage : new Backbone.LocalStorage('TheTempest')
+    jStorage : new Backbone.jStorage('TheTempest')
     });
   
   var book = null;
@@ -145,9 +140,9 @@ $(document).ready(function() {
 
   test("should remove book when destroying", function() {
     book.save({author: 'fnord'})
-    equals(Book.prototype.localStorage.findAll().length, 1, 'book removed');
+    equals(Book.prototype.jStorage.findAll().length, 1, 'book removed');
     book.destroy()
-    equals(Book.prototype.localStorage.findAll().length, 0, 'book removed');
+    equals(Book.prototype.jStorage.findAll().length, 0, 'book removed');
   });
 
   test("Book should use local sync", function()
@@ -165,5 +160,4 @@ $(document).ready(function() {
     var method = Backbone.getSyncMethod(remoteModel);
     equals(method, Backbone.ajaxSync);
   });
-
 });
