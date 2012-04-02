@@ -2,11 +2,9 @@
 
 I took the original Backbone.localStorage (http://documentup.com/jeromegn/backbone.localStorage) and used (https://github.com/andris9/jStorage) so that it will work with older non HTML5 browsers.
 
-I also plan on setting it up so it dosen't patch Backbone.sync but the specific Model or Collections sync.
-
 ## Usage
 
-Include Backbone.localStorage after having included Backbone.js:
+Include Backbone.jStorage after having included Backbone.js:
 
 ```html
 <script type="text/javascript" src="backbone.js"></script>
@@ -19,7 +17,7 @@ Create your collections like so:
 ```javascript
 window.SomeCollection = Backbone.Collection.extend({
   
-  localStorage: new Backbone.jStorage("SomeCollection"), // Unique name within your app.
+  jStorage: new Backbone.jStorage("SomeCollection"), // Unique name within your app.
   
   // ... everything else is normal.
 });
@@ -42,7 +40,7 @@ You'll need node and to `npm install` before being able to run the minification 
 Have fun!
 
 ## Credits
-
+Everything stolen from http://documentup.com/jeromegn/backbone.localStorage
 Thanks to [Mark Woodall](https://github.com/llad) for the QUnit tests.
 Thanks to [Martin Häcker](https://github.com/dwt) for the many fixes and the test isolation.
 
@@ -50,7 +48,7 @@ Thanks to [Martin Häcker](https://github.com/dwt) for the many fixes and the te
 
 Licensed under MIT license
 
-Copyright (c) 2010 Jerome Gravel-Niquet
+Copyright (c) 2012 Brad Barrows
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -1,10 +1,10 @@
 {
-  "author": "Jerome Gravel-Niquet <jeromegn@gmail.com> (http://jgn.me)",
-  "name": "Backbone.localStorage",
+  "author": "Changes to Backbone.localStorage to make Backbone.jStorage made by Brad Barrows <bradleyb1537@gmail.com> (http://jgn.me)",
+  "name": "Backbone.jStorage",
   "version": "0.0.0",
   "repository": {
       "type": "git"
-    , "url": "git://github.com/jeromegn/Backbone.localStorage.git"
+    , "url": "git://github.com/bbarrows/Backbone.jStorage.git"
   },
   "dependencies": {
       "uglify-js" : "~1.2.6"

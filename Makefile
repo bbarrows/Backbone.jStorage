@@ -2,4 +2,4 @@ test:
 	open tests/test.html
 
 minified:
-	uglifyjs -o backbone.localStorage-min.js backbone.localStorage.js
+	uglifyjs -o backbone.jStorage-min.js backbone.jStorage.js
