@@ -3,6 +3,10 @@
 		describe('Models', function() {
 			it('saves, fetches, destroys, and updates models', function() {
 
+				//Clear out jStorage
+				var x = $.jStorage.index(); for (k in x) { $.jStorage.deleteKey(x[k]) }
+				$.jStorage.flush();
+
 				var Book = Backbone.Model.extend({
 					initialize: function(attributes, options) {
 						attributes = attributes || {};
