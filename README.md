@@ -1,6 +1,9 @@
 # Backbone jstorage Adapter v1.0
 
-I took the original Backbone.localStorage (http://documentup.com/jeromegn/backbone.localStorage) and used (https://github.com/andris9/jStorage) so that it will work with older non HTML5 browsers.
+TODO
+Current Issues you need to set a models ID so you know where to find it however if you do it wants to update not create
+
+I started with Backbone.localStorage (http://documentup.com/jeromegn/backbone.localStorage) and used (https://github.com/andris9/jStorage) so that I would have local persisting model/collections that should work wiht IE6+
 
 ## Usage
 
@@ -12,37 +15,37 @@ Include Backbone.jStorage after having included Backbone.js:
 <script type="text/javascript" src="backbone.jstorage.js"></script>
 ```
 
-Create your collections like so:
+Create a collection or model with a jStorage attribute:
 
 ```javascript
-window.SomeCollection = Backbone.Collection.extend({
-  
-  jStorage: new Backbone.jStorage("SomeCollection"), // Unique name within your app.
-  
-  // ... everything else is normal.
-});
+var Book = Backbone.Model.extend({
+	initialize: function(attributes, options) {
+		attributes = attributes || {};
+		this.attributes.title = attributes.title;
+	},					
+	jStorage: new Backbone.jStorage("Books"),
+});	
 ```
-this all from the originl fork from Jerome.
-  
-Feel free to use Backbone as you usually would, this is a drop-in replacement.
 
-## Contributing
+This should not interfere with url based fetching.
 
-You'll need node and to `npm install` before being able to run the minification script.
+NOTE: To use this in your applicaiton you will probably want to set the Model's id attribute
+so that you load and save the same object. Otherwise this library creates a new random id for 
+your object. For example:
 
-1. Fork;
-2. Write code;
-3. Write tests (or vice et versa);
-4. `make test`;
-5. `make minified`;
-6. Create a pull request.
+var best_book = new Book({ title: "My Book" })
+best_book.set('id',"LatestBook");
 
-Have fun!
+Now I can save it:
+best_book.save()
+
+and also retreive it:
+best_book.fetch()
+
+and it will actually be the same object.
 
 ## Credits
-Everything stolen from http://documentup.com/jeromegn/backbone.localStorage
-Thanks to [Mark Woodall](https://github.com/llad) for the QUnit tests.
-Thanks to [Martin Häcker](https://github.com/dwt) for the many fixes and the test isolation.
+Started from http://documentup.com/jeromegn/backbone.localStorage
 
 ## Licensed
 

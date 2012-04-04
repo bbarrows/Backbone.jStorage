@@ -1,5 +1,5 @@
 {
-  "author": "Changes to Backbone.localStorage to make Backbone.jStorage made by Brad Barrows <bradleyb1537@gmail.com> (http://jgn.me)",
+  "author": "Brad Barrows <bradleyb1537@gmail.com> (http://bbarrows.com)",
   "name": "Backbone.jStorage",
   "version": "0.0.0",
   "repository": {
