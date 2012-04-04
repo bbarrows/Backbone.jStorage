@@ -17,10 +17,12 @@
 
 				runs(function() {
 					this.firstBook = new Book({title: 'Catch-22'});
+
 					//When using this in your own projects you will probably want to set the 
 					//model's id so that you load and save the same object everytime you save
 					//and fetch
 					//this.firstBook.set('id', "SameIDEverytime");
+					
 					expect(this.firstBook.attributes.title).toEqual('Catch-22');
 					this.firstBook.attributes.title = "Changed";
 					this.firstBook.save();
@@ -80,7 +82,7 @@
 				runs(function() {
 					this.firstLibrary = new Library();
 					expect(this.firstLibrary.length).toEqual(0);
-					this.firstLibrary.add( {title: "Poooop"} );
+					this.firstLibrary.add( {title: "TestBookTitle"} );
 					expect(this.firstLibrary.length).toEqual(1);
 					var firstBook = this.firstLibrary.models[0];
 					firstBook.set('id', "firstBook");
