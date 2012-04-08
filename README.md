@@ -1,8 +1,5 @@
 # Backbone jstorage Adapter v1.0
 
-TODO
-Current Issues you need to set a models ID so you know where to find it however if you do it wants to update not create
-
 I started with Backbone.localStorage (http://documentup.com/jeromegn/backbone.localStorage) and used (https://github.com/andris9/jStorage) so that I would have local persisting model/collections that should work wiht IE6+
 
 ## Usage
